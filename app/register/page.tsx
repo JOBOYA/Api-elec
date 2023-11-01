@@ -66,7 +66,7 @@ const RegisterPage = () => {
 
   return (
     <div className='border p-5 rounded' style={{ width: '500px' }}>
-      <h1 className='text-2xl mb-4'>S'enregister</h1>
+      <h1 className='text-2xl mb-4'>S'enregistrer</h1>
       {!pendingVerification && (
         <form onSubmit={handleSubmit} className='space-y-4 md:space-y-6'>
           <div>
