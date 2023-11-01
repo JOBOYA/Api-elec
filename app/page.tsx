@@ -1,14 +1,12 @@
 
-import Card from "././components/Card"
-import Search from "./components/Search"
+
 
 
 export default function Home() {
   return (
     <>
- 
-    <Search />
-    <Card />
+  <h1>Accueil api elec</h1>
+    
     </>
   )
 }
