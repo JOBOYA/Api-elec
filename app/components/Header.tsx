@@ -6,7 +6,7 @@ const { userId} = auth()
 
 
   return (
-   <nav className="bg-blue-200 py-4 px-6 flex items-center justify-between mb-5 shadow">
+   <nav className="bg-green-100 py-4 px-6 flex items-center justify-between mb-5 shadow">
   <div className="container-fluid">
     <Link href="/">
       <div className="navbar-brand">Api-elec</div>

@@ -12,7 +12,7 @@ const Card = () => {
   }, []);
 
   return (
-    <div className="w-64 border rounded-lg p-4 mx-auto mt-10">
+    <div className="w-64 border rounded-lg p-4 mx-auto m-40">
       <div className="h-40 relative">
         {isLoading ? (
           <div className="animate-pulse absolute inset-0">

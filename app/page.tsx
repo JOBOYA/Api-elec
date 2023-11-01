@@ -1,12 +1,13 @@
 
 import Card from "././components/Card"
+import Search from "./components/Search"
 
 
 export default function Home() {
   return (
     <>
-    <h1 className="text-4xl font-bold mb-5">Accueil</h1>
-   
+ 
+    <Search />
     <Card />
     </>
   )
