@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { fetchData } from '../api/ebayAPI';
 //react icon calendar 
 import { FaCalendarAlt } from 'react-icons/fa';
+import Arrow from './Arrow'; 
+
 
 interface Data {
   imageUrl: string;
@@ -58,14 +60,17 @@ const Card = () => {
   );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-40">
 
-      {isLoading ? Array(30).fill(null).map((_, index) => (
+    <div className="flex flex-wrap justify-center gap-4 mt-40">
+    {isLoading ? (
+      Array(30).fill(null).map((_, index) => (
         <React.Fragment key={index}>
           {renderSkeleton()}
         </React.Fragment>
-      )) : data.slice(0, 30).map((item, index) => (
-        <div key={index} className="w-64 border rounded-lg p-4 mx-2 my-4 m-4 shadow-lg">
+      ))
+    ) : 
+      data.slice(0, 30).map((item, index) => (
+        <div key={index} className="border rounded-lg p-4 my-4 mx-auto shadow-lg max-w-xs">
           {/* ... (le reste du code de la carte reste inchangé) */}
           <div className="h-40 relative">
             <img src={item.imageUrl} alt="example" className="w-full h-full object-cover rounded" />
@@ -84,6 +89,7 @@ const Card = () => {
           </div>
         </div>
       ))}
+      <Arrow />
     </div>
   );
 };

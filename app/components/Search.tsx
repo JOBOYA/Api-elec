@@ -39,7 +39,7 @@ const Search: React.FC = () => {
 
   return (
     <div className="flex flex-col justify-center items-center mt-14">
-      <p className="mb-4 text-lg font-semibold">Recherche de produits et références en électricité</p>
+      <p className="mb-4 text-lg font-semibold">Recherche de produits et références</p>
       <div className="flex items-center border rounded-full p-2">
         <input
           type="text"
