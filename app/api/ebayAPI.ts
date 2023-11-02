@@ -1,8 +1,12 @@
 import axios from 'axios';
 
+
+export const fetchData = async (searchTerm: string = "iPhone") => {
+
 const options = {
   method: 'POST' as const,
   url: process.env.NEXT_PUBLIC_EBAY_API_URL!,
+  params: { q: searchTerm },
   headers: {
     'Content-Type': 'application/json',
     'X-RapidAPI-Key': process.env.NEXT_PUBLIC_EBAY_API_KEY!,
@@ -36,9 +40,7 @@ const options = {
     ],
   },
 };
-
-export const fetchData = async () => {
-  try {
+ try {
     const response = await axios.request(options);
     console.log(response.data);
     return response.data;

@@ -10,9 +10,32 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useState } from 'react';
+import { fetchData } from '../api/ebayAPI';
 
 const Search: React.FC = () => {
   const [position, setPosition] = React.useState("bottom");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = async () => {
+    if (searchTerm.trim()) {
+      try {
+        const results = await fetchData(searchTerm);
+        // Traitez les résultats ici, par exemple en mettant à jour l'état avec les résultats
+        console.log(results);
+      } catch (error) {
+        // Gérer les erreurs ici
+        console.error(error);
+      }
+    }
+  };
+  
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
 
   return (
     <div className="flex flex-col justify-center items-center mt-14">
@@ -22,6 +45,8 @@ const Search: React.FC = () => {
           type="text"
           placeholder="Rechercher"
           className="rounded-full pl-2 focus:outline-none"
+          onChange={e => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,6 +54,7 @@ const Search: React.FC = () => {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          onClick={handleSearch}
         >
           <path
             strokeLinecap="round"

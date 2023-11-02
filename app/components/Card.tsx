@@ -41,7 +41,7 @@ const Card = () => {
   }, []);
 
   const renderSkeleton = () => (
-    <div className="w-64 border rounded-lg p-4 mx-auto m-40 animate-pulse">
+    <div className="w-64 border rounded-lg p-4 mx-2 my-4 m-4 shadow-lg animate-pulse">
       <div className="h-40 relative">
         <div className="absolute inset-0">
           <div className="w-full h-full bg-gray-300 rounded"></div>
@@ -65,7 +65,7 @@ const Card = () => {
           {renderSkeleton()}
         </React.Fragment>
       )) : data.slice(0, 30).map((item, index) => (
-        <div key={index} className="w-64 border rounded-lg p-4 m-4 shadow-lg">
+        <div key={index} className="w-64 border rounded-lg p-4 mx-2 my-4 m-4 shadow-lg">
           {/* ... (le reste du code de la carte reste inchangé) */}
           <div className="h-40 relative">
             <img src={item.imageUrl} alt="example" className="w-full h-full object-cover rounded" />
