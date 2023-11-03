@@ -11,7 +11,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useState } from 'react';
-import { fetchData } from '../api/ebayAPI';
+import { fetchData } from '../api/fakeData';
 
 const Search: React.FC = () => {
   const [position, setPosition] = React.useState("bottom");
@@ -20,12 +20,15 @@ const Search: React.FC = () => {
   const handleSearch = async () => {
     if (searchTerm.trim()) {
       try {
-        const results = await fetchData(searchTerm);
-        // Traitez les résultats ici, par exemple en mettant à jour l'état avec les résultats
-        console.log(results);
+        const { products } = await fetchData(); // Destructuration pour obtenir directement les produits
+        const filteredResults = products.filter(product =>
+          product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        // Utilisez `filteredResults` pour mettre à jour l'interface utilisateur avec les résultats de recherche
+        console.log(filteredResults);
       } catch (error) {
-        // Gérer les erreurs ici
         console.error(error);
+        // Affichez une erreur à l'utilisateur ici, si nécessaire
       }
     }
   };

@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false); // Terminez le chargement après un délai
-    }, 3000); // Définissez le délai souhaité pour le chargement
+    }, 1000); // Définissez le délai souhaité pour le chargement
 
     return () => clearTimeout(timer);
   }, []);

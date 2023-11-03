@@ -2,8 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import {UserButton, auth } from "@clerk/nextjs";
 
+
+
 const Header = () => {
 const { userId} = auth()
+
+
 
 
   return (
