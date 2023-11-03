@@ -5,10 +5,10 @@ import Search from "../components/Search"
 const DashboardPage = () => {
   return (
     <>
-   
+  
       <Search />
       <Card />
-     
+  
     </>
   )
 }
