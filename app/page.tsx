@@ -1,68 +1,78 @@
-
-
-
+'use client'
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Footer from './components/Footer';
+import Loader from './components/Loader'; // Assurez-vous que ce composant est bien implémenté
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulez le chargement des données par exemple avec un effet
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Terminez le chargement après un délai
+    }, 3000); // Définissez le délai souhaité pour le chargement
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loader />; // Affichez votre composant de chargement ici
+  }
+
+  // Définissez les variantes d'animation pour le texte et l'image comme avant
+  const textAnimation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
+  const imageAnimation = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
+  };
   return (
     <>
-<section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black mt-10">
-      <div className="container px-4 md:px-6">
-        <div className="grid gap-6 items-center">
-          <div className="flex flex-col justify-center space-y-4 text-center">
+      <motion.section
+        initial="hidden"
+        animate="visible"
+        transition={{ staggerChildren: 0.3 }}
+        className="w-full pt-12 md:pt-24 lg:pt-32"
+      >
+        <div className="container space-y-10 xl:space-y-16">
+          <motion.div
+            variants={textAnimation}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center space-y-4 text-center"
+          >
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
-                Découvrez Nos Solutions Uniques
+              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+                Bienvenue cher Electronex
               </h1>
-              <p className="max-w-[600px] text-zinc-200 md:text-xl dark:text-zinc-100 mx-auto">
-                Nos solutions sont conçues pour augmenter votre productivité et optimiser votre flux de travail.
+              <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
+                Offrir à votre entreprise des services et des solutions de haute qualité.
               </p>
             </div>
-            <div className="w-full max-w-full space-y-2 mx-auto">
-              <div className="grid grid-cols-3 gap-6">
-                <div className="flex flex-col space-y-2">
-                  <h2 className="text-xl font-bold text-white">Matériel de Qualité</h2>
-                  <p className="text-zinc-200 dark:text-zinc-100">
-                    Nos produits sont sélectionnés pour leur durabilité et leur fiabilité.
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <h2 className="text-xl font-bold text-white">Intégration Facile</h2>
-                  <p className="text-zinc-200 dark:text-zinc-100">
-                    Intégrez facilement nos solutions à vos projets existants sans complications.
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <h2 className="text-xl font-bold text-white">Personnalisation Avancée</h2>
-                  <p className="text-zinc-200 dark:text-zinc-100">
-                    Adaptez les produits à vos besoins spécifiques pour un rendement optimal.
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <h2 className="text-xl font-bold text-white">Recherche Puissante</h2>
-                  <p className="text-zinc-200 dark:text-zinc-100">
-                    Trouvez rapidement les produits ou les informations dont vous avez besoin.
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <h2 className="text-xl font-bold text-white">Sécurité Fiable</h2>
-                  <p className="text-zinc-200 dark:text-zinc-100">
-                    Avec notre engagement envers la sécurité, vos installations seront toujours sécurisées.
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2">
-                  <h2 className="text-xl font-bold text-white">Collaboration Facile</h2>
-                  <p className="text-zinc-200 dark:text-zinc-100">
-                    Collaborez en temps réel avec votre équipe pour des projets plus efficaces.
-                  </p>
-                </div>
-              </div>
+            <div className="space-x-4">
+              <Link href="#"
+                className="inline-flex h-9 items-center justify-center rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-zinc-50 shadow transition-colors hover:bg-zinc-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 dark:focus-visible:ring-zinc-300">
+                  Nos services
+                
+              </Link>
             </div>
-          </div>
+          </motion.div>
+          <motion.img
+            variants={imageAnimation}
+            transition={{ duration: 1.2 }}
+            alt="Company Banner"
+            className="mx-auto aspect-[3/1] overflow-hidden rounded-t-xl object-cover object-center"
+            height="300"
+            src="https://images.unsplash.com/photo-1435575653489-b0873ec954e2?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            width="1200"
+          />
         </div>
-      </div>
-    </section>
-
-    
+      </motion.section>
+      <Footer />
     </>
-  )
+  );
 }
